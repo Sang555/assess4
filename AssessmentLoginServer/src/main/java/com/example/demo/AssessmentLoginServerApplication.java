@@ -8,7 +8,6 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 @EnableDiscoveryClient
-@RestController
 @EnableHystrix
 @SpringBootApplication
 public class AssessmentLoginServerApplication {
@@ -17,10 +16,6 @@ public class AssessmentLoginServerApplication {
 		SpringApplication.run(AssessmentLoginServerApplication.class, args);
 	}
 	
-	@RequestMapping
-	public String demoMethod()
-	{
-		return "<h1>WELCOME</h1>";
-	}
+
 
 }
