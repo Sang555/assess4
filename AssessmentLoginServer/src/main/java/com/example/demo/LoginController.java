@@ -21,8 +21,8 @@ public class LoginController {
 	@GetMapping("/callservice")
 	public String invokeService(@RequestParam String name, @RequestParam String pwd)
 	{
-		
-		String url="http://AUTH-SERVICE:8094/authenticate/"+name;
+		System.out.println("hey");
+		String url="http://AUTH-SERVICE:8094/authenticate/"+name+"&"+pwd;
 		return restTemplate.getForObject(url, String.class);
 	}
 

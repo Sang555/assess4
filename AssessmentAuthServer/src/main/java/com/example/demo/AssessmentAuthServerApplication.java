@@ -5,9 +5,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @EnableEurekaClient
+@RestController
 @SpringBootApplication
 public class AssessmentAuthServerApplication {
 
@@ -15,6 +21,27 @@ public class AssessmentAuthServerApplication {
 		SpringApplication.run(AssessmentAuthServerApplication.class, args);
 	
 	}
+	@Autowired
+	private UserDAO userDao;
+
+
+	
+	@RequestMapping("/authenticate/{name}&{pwd}")
+	public String verify(@PathVariable(value="name") String name,@PathVariable(value="pwd") String pwd) 
+	{  	System.out.println(name);
+       System.out.println(pwd);
+		
+		User u=new User();
+		u.setUser("Sang");
+		u.setPwd("sang");
+		userDao.save(u);
+		
+		User user=userDao.findUser(name,pwd);
+		
+	    System.out.println(user);
+		return "enroll.jsp";
+	}
+	
 
 
 }
