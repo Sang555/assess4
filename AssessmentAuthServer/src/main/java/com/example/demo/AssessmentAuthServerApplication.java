@@ -32,14 +32,22 @@ public class AssessmentAuthServerApplication {
        System.out.println(pwd);
 		
 		User u=new User();
+		//this is data in database
 		u.setUser("Sang");
 		u.setPwd("sang");
 		userDao.save(u);
 		
 		User user=userDao.findUser(name,pwd);
-		
-	    System.out.println(user);
-		return "enroll.jsp";
+		   if(user==null)
+		   {
+			return "failure";
+		   }
+		   else 
+		   {
+		     return "success";
+			  
+		   }
+	  
 	}
 	
 
